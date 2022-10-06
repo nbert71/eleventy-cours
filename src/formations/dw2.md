@@ -3,6 +3,8 @@ layout: forma.njk
 tags:
     - forma
     - front
+    - html
+    - css
 formation: Dev Web 2
 resume: "Responsive et Bootstrap"
 image: https://www.transycons.com/wp-content/uploads/2014/08/bootstrap-1.jpg

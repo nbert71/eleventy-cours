@@ -18,7 +18,7 @@ title: Les formations
 
 <div class="tags mb-4">
     <p>Tags :</p>
-    <div id="allTags" class="d-flex flex-row flew-wrap gap-2">
+    <div id="allTags" class="d-flex flex-row flex-wrap gap-2">
     </div>
 </div>
 
@@ -35,6 +35,7 @@ title: Les formations
                         <h5 class="card-title">{{forma.data.formation}}</h5>
                         <p class="card-text">{{forma.data.resume}}</p>
                         <div class="flex">
+                            <i>Tags : </i>
                             {% for tag in forma.data.tags %}
                                 {% if tag != "forma" %}
                                     <span class="badge bg-primary uppercase">{{tag}}</span>

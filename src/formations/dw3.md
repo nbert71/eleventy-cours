@@ -3,6 +3,7 @@ layout: forma.njk
 tags:
     - forma
     - back
+    - php
 formation: Dev Web 3
 resume: Le backend avec PHP
 image: https://www.audit-conseil-formation.com/formations/uploads/glossaire_image_30.webp

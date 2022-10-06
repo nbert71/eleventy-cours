@@ -4,6 +4,7 @@ tags:
     - forma
     - front
     - html
+    - css
 formation: Dev Web 1
 resume: "Introduction au dev web"
 image: https://www.journalduweb.org/wp-content/uploads/2019/02/apprendre-html-et-css.jpg

@@ -3,6 +3,9 @@ layout: forma.njk
 tags:
     - forma
     - mobile
+    - js
+    - react-native
+    - css
 formation: Dev Mobile 3
 resume: "Formulaires et Redux"
 image: https://i0.wp.com/regroove.ca/wp-content/uploads/2018/07/react-redux-2.png?fit=2560%2C1440&ssl=1
