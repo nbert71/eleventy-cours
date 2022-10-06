@@ -3,9 +3,29 @@ layout: base.njk
 title: Les formations
 ---
 
-<div class="row">
+<script>
+    // On récupère tous les tags
+    var allTags = new Set();
     {% for forma in collections.forma %}
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        {% for tag in forma.data.tags %}
+            {% if tag != "forma" %}
+                allTags.add("{{tag}}")
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    allTags.add('aucun');
+</script>
+
+<div class="tags mb-4">
+    <p>Tags :</p>
+    <div id="allTags" class="d-flex flex-row flew-wrap gap-2">
+    </div>
+</div>
+
+<div class="row">
+    {% set idForma = 0 %}
+    {% for forma in collections.forma %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4" id="{{idForma}}">
             <div class="card p-0">
                 <a href="{{forma.fileSlug}}" style="text-decoration: none; color: black;">
                     <div class="flex">
@@ -25,5 +45,69 @@ title: Les formations
                 </a>
             </div>
         </div>
+        {% set idForma = idForma + 1 %}
     {% endfor %}
 </div>
+
+<script type="text/javascript">
+    // fonction de coloration du tag selectionne
+
+    function setNewTagButtonColor(selectedTag){
+        listeTags = Array.from(allTags);
+        listeTags.forEach(tag => {
+            tagList = document.getElementById(tag).classList;
+            //on enleve toutes les classes
+            tagList.remove('btn-outline-dark');
+            tagList.remove('btn-success');
+
+            if(tag == selectedTag) {
+                tagList.add('btn-success');
+            } else {
+                tagList.add('btn-outline-dark');
+            }
+        })
+    }
+
+
+
+    //fonction de filtrage
+    function filterUsingTag(selectedTag){
+        setNewTagButtonColor(selectedTag);
+        var id = 0;
+
+        {% for forma in collections.forma %}
+            {% if forma.data.tags %}
+                //on recupère les tags de la forma en question
+                var cats = "{{forma.data.tags}}";
+                
+                // on récupère l'élément HTML de la forma
+                var formaDiv = document.getElementById(id);
+
+                // on affiche la forma si le tag selectionné est inclus dans les tags de la forma ou bien si le tag 'aucun' est sélectionné 
+                formaDiv.style.display = (cats.includes(selectedTag) || selectedTag == 'aucun') ? 'block' : 'none';
+
+                id +=1;
+            {% endif %}
+        {% endfor %}
+    }
+</script>
+
+<script type="text/javascript">
+    // création des boutons
+    t = Array.from(allTags);
+    t.sort();
+    let id = 0
+    t.forEach((cat) => {
+        button = document.createElement('button');
+        tag = document.createTextNode(cat)
+        button.appendChild(tag);
+        button.setAttribute("id", cat);
+        button.setAttribute("onclick", "filterUsingTag(this.id)");
+        button.setAttribute("class", "btn btn-outline-dark")
+        document.getElementById('allTags').appendChild(button);
+        id++;
+    });
+
+    //on appelle le filtrage suivant le tag aucun
+    filterUsingTag('aucun');
+</script>
