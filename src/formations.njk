@@ -1,0 +1,29 @@
+---
+layout: base.njk
+title: Les formations
+---
+
+<div class="row">
+    {% for forma in collections.forma %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div class="card p-0">
+                <a href="{{forma.fileSlug}}" style="text-decoration: none; color: black;">
+                    <div class="flex">
+                        <img src="{{forma.data.image}}" style="width: 100%; height: 300px; object-fit: contain;" alt="..." />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{forma.data.formation}}</h5>
+                        <p class="card-text">{{forma.data.resume}}</p>
+                        <div class="flex">
+                            {% for tag in forma.data.tags %}
+                                {% if tag != "forma" %}
+                                    <span class="badge bg-primary uppercase">{{tag}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
